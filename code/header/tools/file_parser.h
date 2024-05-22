@@ -7,6 +7,7 @@
 #include <sstream>
 #include <filesystem>
 #include <iostream>
+#include <cassert>
 
 #define PROJECT_FILE_PATH(file_relative_path) \
     std::filesystem::path("../") / std::filesystem::path(file_relative_path)
@@ -23,7 +24,7 @@ private:
     std::fstream file;
 
 public:
-    FileParser(const std::string file_relative_path="");
+    explicit FileParser(const std::string &file_relative_path="");
     ~FileParser();
 
     std::list<std::string> nextLine();

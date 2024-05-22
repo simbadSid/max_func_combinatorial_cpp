@@ -1,11 +1,10 @@
 #include "file_parser.h"
 
 
-FileParser::FileParser(const std::string file_relative_path)
+FileParser::FileParser(const std::string &file_relative_path)
 {
-    if (file_relative_path != "")
+    if (!file_relative_path.empty())
     {
-std::string x = PROJECT_FILE_PATH(file_relative_path);
         this->file.open(PROJECT_FILE_PATH(file_relative_path), std::ios::in);
         assert(this->file.is_open());
     }

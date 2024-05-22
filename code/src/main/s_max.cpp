@@ -12,14 +12,14 @@ void S_max::parse_input(std::string file_relative_path)
     this->k         = STRING_TO_UNSIGNED(*line_iterator); std::advance(line_iterator, 1);
     this->m         = STRING_TO_UNSIGNED(*line_iterator); std::advance(line_iterator, 1);
 
-    for (int i=0; i<this->k; ++i)
+    for (unsigned i=0; i<this->k; ++i)
     {
         line            = fileParser->nextLine();
         line_iterator   = line.begin();
 
         unsigned            Ni              = STRING_TO_UNSIGNED(*line_iterator); std::advance(line_iterator, 1);
         std::list<unsigned> line_unsigned   = {};
-        for (int j=0; j<Ni; ++j)
+        for (unsigned j=0; j<Ni; ++j)
         {
             unsigned val = STRING_TO_UNSIGNED(*line_iterator); std::advance(line_iterator, 1);
             line_unsigned.push_back(f(val));
@@ -35,7 +35,7 @@ unsigned S_max::find_max()
     std::list<unsigned> transition_0 = {0};
     auto k_list_iterator = this->k_list.begin();
 
-    for (int i=0; i<this->k; ++i)
+    for (unsigned i=0; i<this->k; ++i)
     {
         std::list<unsigned> transition_1 = {};
         std::list<unsigned> line = *k_list_iterator; advance(k_list_iterator, 1);
