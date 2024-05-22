@@ -21,7 +21,5 @@
 
 void log_error(const char *format, ...);
 
-#define STRING_TO_UNSIGNED(st) static_cast<unsigned int>(stoul(st))                               \
-
-                                                                                                  \
+                                                    \
 #endif //TOOLS_H
