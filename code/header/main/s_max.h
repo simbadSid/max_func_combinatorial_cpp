@@ -19,13 +19,15 @@
 class S_max
 {
 private:
-    unsigned int                    k       = 0;
-    unsigned int                    m       = 0;
-    std::list<std::list<DATA_TYPE>> k_list = {};
+    unsigned int                        k;
+    unsigned int                        m;
+    std::list<std::list<DATA_TYPE>*>    *k_list;
 
 public:
+    S_max();
+    ~S_max();
     void parse_input(const std::string& file_relative_path="");
-    //TODO def set_random_input(self, k: int, m: int):
+    void set_random_input(unsigned int k, unsigned int m);
     DATA_TYPE find_max();
 
 };

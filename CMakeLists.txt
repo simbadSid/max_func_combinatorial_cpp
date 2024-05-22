@@ -42,11 +42,14 @@ set(                        DIR_RESOURCE                        ${CMAKE_SOURCE_D
 set(                        DIR_TEST_INPUT                      ${DIR_RESOURCE}/input)
 set(                        DIR_TEST_OUTPUT                     ${DIR_RESOURCE}/output)
 
+set(                        TEST_KIND_VALGRIND                  valgrind)
 set(                        TEST_KIND                           non_regression
+                                                                ${TEST_KIND_VALGRIND}
                                                                 performance)
 
 set(                        EXEC                                main)
 set(                        EXEC_DEBUG                          main_debug)
+set(                        EXEC_VALGRIND                       main_valgrind)
 
 set(                        CMAKE_CXX_FLAGS                     "-O3 -Wall -g") #-Werror -Wextra
 SET(                        FLAG_PROD                           "")
@@ -159,9 +162,18 @@ foreach(testKind ${TEST_KIND})
                 message(STATUS "\t\t\t\"Add test: ${execName}\"")
                 add_executable(${execName} ${libCustomList} ${execTest})
                 target_compile_options( ${execName} PUBLIC ${FLAG_TEST} ${FLAG_INPUT} ${FLAG_OUTPUT})
-                add_test(NAME ${execName} COMMAND ${execName})
+
+                if(${testKind} STREQUAL ${TEST_KIND_VALGRIND})
+                    add_test(NAME ${execName} COMMAND valgrind --leak-check=full --error-exitcode=1 ${execName})
+                else()
+                    add_test(NAME ${execName} COMMAND ${execName})
+                endif()
+
 
             endforeach()
         endforeach()
     endif()
 endforeach()
+
+
+# Add test with Valgrind for memory leakage
