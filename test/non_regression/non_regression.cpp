@@ -3,6 +3,7 @@
 #include "s_max.h"
 #include "tools.h"
 
+
 int main()
 {
     std::cout << "Begin Test using input file \"" << TEST_INPUT_FILE << "\" and output file \"" << TEST_OUTPUT_FILE << "\"" << std::endl;
